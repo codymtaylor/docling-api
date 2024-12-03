@@ -1,13 +1,13 @@
 modules = ["python-3.12"]
 
 # Change the run command to a shell script
-run = "sh -c 'redis-server & sleep 2 && poetry run uvicorn main:app --reload --port 8080 & sleep 5 && poetry run celery -A worker.celery_config worker --pool=solo -n worker_primary --loglevel=info & poetry run celery -A worker.celery_config flower --port=5555'"
+run = "sh -c 'redis-server & sleep 2 && poetry run uvicorn main:app --reload --port 8080 & sleep 2 && poetry run celery -A worker.celery_config worker --pool=solo -n worker_primary --loglevel=info & poetry run celery -A worker.celery_config flower --port=5555'"
 
 [nix]
 channel = "stable-24_05"
 
 [deployment]
-run = ["sh", "-c", "redis-server & sleep 2 && poetry run uvicorn main:app --reload --port 8080 & sleep 5 && poetry run celery -A worker.celery_config worker --pool=solo -n worker_primary --loglevel=info & poetry run celery -A worker.celery_config flower --port=5555"]
+run = ["sh", "-c", "redis-server & sleep 2 && poetry run uvicorn main:app --reload --port 8080 & sleep 2 && poetry run celery -A worker.celery_config worker --pool=solo -n worker_primary --loglevel=info & poetry run celery -A worker.celery_config flower --port=5555"]
 
 [[ports]]
 localPort = 5555

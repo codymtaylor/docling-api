@@ -134,3 +134,11 @@ async def create_batch_conversion_job(
 async def get_batch_conversion_job_status(job_id: str):
     """Get the status and results of a batch conversion job."""
     return document_converter_service.get_batch_conversion_task_result(job_id)
+
+
+@router.get(
+    '/ping',
+    description="Test endpoint to verify API connectivity"
+)
+async def ping():
+    return {"status": "ok", "message": "API is running"}

@@ -9,6 +9,9 @@
 <body>
     <div class="container">
         <h1>Docling API Tester</h1>
+        <div class="api-status">
+            API Status: <span id="apiStatus">Checking...</span>
+        </div>
         <div class="upload-section">
             <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.txt">
             <button onclick="uploadFile()">Process Document</button>
@@ -22,6 +25,15 @@
             <pre id="resultOutput"></pre>
         </div>
     </div>
-    <script src="/static/script.js"></script>
+    <script src="/static/script.js?v=2"></script>
+    <script>
+        // Check API status on page load
+        (async function() {
+            const apiStatus = document.getElementById('apiStatus');
+            const isConnected = await checkApiConnection();
+            apiStatus.textContent = isConnected ? 'Connected' : 'Not Connected';
+            apiStatus.className = isConnected ? 'connected' : 'disconnected';
+        })();
+    </script>
 </body>
 </html>
